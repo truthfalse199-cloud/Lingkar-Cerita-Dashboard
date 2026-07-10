@@ -10,48 +10,68 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# 2. Sentuhan Kustom CSS (Ringan & Bersih) untuk Efek Visual & Hover
+# 2. Sentuhan Kustom CSS (Warna Pastel Lembut dengan Transparansi 50% & Hover Effect)
 st.markdown("""
     <style>
-    /* Mengubah warna latar belakang utama */
+    /* Mengubah warna latar belakang utama halaman */
     .stApp {
         background-color: #f8f9fa;
     }
     
-    /* Desain Kartu (Metrics Card) yang Modern dengan Efek Transisi Hover */
+    /* TARGETING KARTU INDIVIDU BERDASARKAN URUTAN KOLOM */
+    /* Kartu 1 (Total Laporan) - Biru Pastel Lembut (50% Transparansi) */
+    div[data-testid="stHorizontalBlock"] > div:nth-child(1) div[data-testid="stMetric"] {
+        background-color: rgba(74, 144, 226, 0.15) !important;
+        border-left: 5px solid rgba(74, 144, 226, 0.7);
+    }
+    
+    /* Kartu 2 (Total Halaman) - Hijau Sage Lembut (50% Transparansi) */
+    div[data-testid="stHorizontalBlock"] > div:nth-child(2) div[data-testid="stMetric"] {
+        background-color: rgba(76, 175, 80, 0.15) !important;
+        border-left: 5px solid rgba(76, 175, 80, 0.7);
+    }
+    
+    /* Kartu 3 (Rata-rata Skor Empati) - Ungu Lavender Lembut (50% Transparansi) */
+    div[data-testid="stHorizontalBlock"] > div:nth-child(3) div[data-testid="stMetric"] {
+        background-color: rgba(155, 89, 182, 0.15) !important;
+        border-left: 5px solid rgba(155, 89, 182, 0.7);
+    }
+    
+    /* Base Styling untuk Semua Kartu Metrics */
     div[data-testid="stMetric"] {
-        background-color: #ffffff;
-        border-radius: 12px;
-        padding: 20px 25px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        border: 1px solid #e9ecef;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 12px !important;
+        padding: 20px 25px !important;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02) !important;
+        border-top: 1px solid rgba(0,0,0,0.05) !important;
+        border-right: 1px solid rgba(0,0,0,0.05) !important;
+        border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+        transition: transform 0.3s ease, box-shadow 0.3s ease !important;
     }
     
     /* Efek Interaktif Kustom saat Mouse Mengarah ke Kartu */
     div[data-testid="stMetric"]:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-        border-color: #4a90e2;
+        transform: translateY(-5px) !important;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08) !important;
     }
     
-    /* Kustomisasi Teks Metric */
+    /* Kustomisasi Tipografi Teks Metric agar Lebih Tajam */
     div[data-testid="stMetricLabel"] {
-        font-size: 14px !important;
-        color: #6c757d !important;
-        font-weight: 600;
+        font-size: 13px !important;
+        color: #495057 !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.5px;
     }
     div[data-testid="stMetricValue"] {
-        font-size: 28px !important;
+        font-size: 26px !important;
         color: #212529 !important;
-        font-weight: 700;
+        font-weight: 800 !important;
     }
     
-    /* Merapikan Jarak Pembatas */
+    /* Garis Pembatas (HR) */
     hr {
         margin-top: 2rem;
         margin-bottom: 2rem;
-        border-color: #dee2e6;
+        border-color: #e9ecef;
     }
     </style>
     """, unsafe_allow_html=True)
