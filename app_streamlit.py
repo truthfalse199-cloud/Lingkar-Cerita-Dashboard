@@ -107,6 +107,7 @@ if data is not None:
     html_template = read_static_file("index.html")
     css_content = read_static_file("style.css")
     js_content = read_static_file("app.js")
+    chartjs_local = read_static_file("chart.umd.min.js")
 
     # Modifikasi HTML untuk menyematkan CSS & JS secara inline, 
     # dan menyuntikkan data dari Python ke Javascript
@@ -118,7 +119,13 @@ if data is not None:
         f'<style>{css_content}</style>'
     )
     
-    # Kita suntikkan variabel global `stData` ke JS dan matikan loading overlay bawaan
+    # Ganti CDN Chart.js dengan library lokal
+    html_ready = html_ready.replace(
+        '<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>',
+        f'<script>{chartjs_local}</script>'
+    )
+    
+    # Kita suntikkan variabel global `stData` ke JS
     custom_script = f"""
     <script>
       window.stData = {data_json_str};
